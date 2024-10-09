@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LekmVwqAAAAABi8ODune8JYZ1BwUqu1kRyrIQaj" async defer></script>
+</head>
+<body>
+    <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="mail" placeholder="Your Email" required>
+        <textarea name="comment" placeholder="Your Comment" required></textarea>
+        <button type="submit">Submit</button>
+        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+    </form>
+
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LekmVwqAAAAABi8ODune8JYZ1BwUqu1kRyrIQaj" async defer></script>
+    <script>
+        const form = document.getElementById('contactForm');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            grecaptcha.enterprise.ready(async () => {
+              const token = await grecaptcha.enterprise.execute('6LekmVwqAAAAABi8ODune8JYZ1BwUqu1kRyrIQaj', {action: 'submit'});
+              console.log(document.getElementById('g-recaptcha-response').value = token);
+            });
+        });
+    </script>
+</body>
+
+</html>
